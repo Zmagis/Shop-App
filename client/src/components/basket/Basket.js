@@ -36,8 +36,12 @@ const Basket = ({ products, onFetchProducts, onRemoveItemFromBasket }) => {
   };
 
   if (ids !== null) {
+    let arr = JSON.parse(localStorage.getItem("basket"));
     console.log(ids);
-    filteredArr = products.filter((item) => ids.includes(item.idProducts));
+    console.log(arr);
+    filteredArr = products.filter((item) => arr.includes(item.idProducts));
+
+    // ids.forEach((item) => console.log(item));
 
     filteredArr.map((item) => {
       return (total = total + item.Price);
