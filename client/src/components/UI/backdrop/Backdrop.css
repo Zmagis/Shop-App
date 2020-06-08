@@ -1,0 +1,35 @@
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal {
+  position: relative;
+  z-index: 500;
+  background-color: white;
+  /* width: 600px; */
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px rgb(30, 30, 31);
+  padding: 36px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.leave-modal {
+  position: absolute;
+  z-index: 501;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 550px) {
+  .modal {
+    width: 95vw;
+  }
+}

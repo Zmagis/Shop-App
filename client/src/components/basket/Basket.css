@@ -1,0 +1,42 @@
+.basket {
+  max-width: 90vw;
+  margin: auto;
+}
+.basket table {
+  margin: 40px auto;
+  min-width: 50%;
+}
+.basket table,
+td {
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+}
+
+tbody td {
+  border: 1px solid rgba(0, 0, 0, 0.185);
+}
+td {
+  min-width: 100px;
+}
+th {
+  padding-bottom: 10px;
+}
+.basket img {
+  max-height: 100px;
+}
+
+.basket button {
+  display: flex;
+  margin: auto;
+}
+.remove {
+  color: red;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.remove:hover {
+  background-color: rgba(143, 143, 143, 0.089);
+  border-radius: 8px;
+}

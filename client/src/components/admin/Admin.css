@@ -1,0 +1,19 @@
+.box {
+  width: 90%;
+  max-width: 1400px;
+  margin: 4% auto 30px auto;
+}
+
+.box .product-details {
+  padding: 10px;
+  border: 0.5px solid rgba(187, 187, 187, 0.596);
+}
+
+.edit-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-buttons button:hover {
+  background-color: rgba(14, 114, 14, 0.335);
+}

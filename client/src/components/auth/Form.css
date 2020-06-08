@@ -1,0 +1,64 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 500px;
+}
+form input,
+form textarea {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form button {
+  color: rgb(255, 255, 255);
+  background-color: rgb(88, 135, 189);
+}
+
+button {
+  box-sizing: border-box;
+  padding: 10px 0;
+  border: 1px solid gray;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 0 30px 0;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn {
+  width: 100%;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  cursor: pointer;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: -40%;
+  opacity: 0;
+  cursor: pointer;
+}
+.uploaded {
+  border: 2px solid rgb(128, 221, 128);
+}
+@media only screen and (max-width: 550px) {
+  form {
+    width: 80vw;
+  }
+}
+label {
+  font-weight: bold;
+}
