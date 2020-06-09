@@ -21,8 +21,8 @@ This project was started with my college in bootcamp ([where we ended](https://g
 
 ### If loged in as admin
 
-- Admin can add new product for sale
-- Admin can edit or remove his products
+- add new product for sale
+- edit or remove products
 
 ## To run on your local machine follow these steps:
 
