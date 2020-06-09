@@ -6,6 +6,11 @@
   margin: 40px auto;
   min-width: 50%;
 }
+
+.price-hd {
+  border: 1px solid rgba(0, 0, 0, 0.185);
+}
+
 .basket table,
 td {
   border-collapse: collapse;
@@ -22,6 +27,10 @@ td {
 th {
   padding-bottom: 10px;
 }
+
+.minus-icon {
+  border: 1px solid transparent;
+}
 .basket img {
   max-height: 100px;
 }
@@ -29,6 +38,11 @@ th {
 .basket button {
   display: flex;
   margin: auto;
+  margin-top: 20px;
+  border: none;
+}
+.basket button:hover {
+  background-color: rgba(14, 114, 14, 0.335);
 }
 .remove {
   color: red;
@@ -39,4 +53,9 @@ th {
 .remove:hover {
   background-color: rgba(143, 143, 143, 0.089);
   border-radius: 8px;
+}
+
+.emty-basket {
+  text-align: center;
+  line-height: 40px;
 }

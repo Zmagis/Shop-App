@@ -45,18 +45,14 @@ const Basket = ({ products, onFetchProducts, onRemoveItemFromBasket }) => {
     console.log(filteredArr);
     filteredItems =
       filteredArr.length === 0 ? (
-        <p style={{ textAlign: "center", lineHeight: "40px" }}>
-          No products in your basket yet!
-        </p>
+        <p className="emty-basket">No products in your basket yet!</p>
       ) : (
         <table>
           <thead>
             <tr>
               <th></th>
               <th></th>
-              <th style={{ border: "1px solid rgba(0, 0, 0, 0.185)" }}>
-                Price, €
-              </th>
+              <th className="price-hd">Price, €</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +67,7 @@ const Basket = ({ products, onFetchProducts, onRemoveItemFromBasket }) => {
                 <td>
                   <p>{product.Price}</p>
                 </td>
-                <td style={{ border: "1px solid transparent" }}>
+                <td className="minus-icon">
                   <i
                     className="fas fa-minus remove"
                     onClick={() => removeHandler(product.idProducts)}
@@ -104,7 +100,7 @@ const Basket = ({ products, onFetchProducts, onRemoveItemFromBasket }) => {
           shippingAddress
           billingAddress
         >
-          <button style={{ marginTop: "20px" }}> Pay now</button>
+          <button>Purchase</button>
         </StripeCheckout>
       )}
     </div>

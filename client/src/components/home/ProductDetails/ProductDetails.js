@@ -3,14 +3,13 @@ import "./ProductDetails.css";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
-
 const ProductDetails = ({ data, children }) => {
   console.log(data.Price);
   const makePayment = (token) => {
     const body = {
       token,
       total: data.Price,
-      ids: data.idProducts
+      ids: data.idProducts,
       //total,
     };
     axios.post("/payment", body).then((result) => {
@@ -37,18 +36,18 @@ const ProductDetails = ({ data, children }) => {
             <br />
             <p>Views: {data.views}</p>
           </div>
-          <div style={{ display: "flex", alignItems: "flex-end" }}>
-          {children[0]}
+          <div className="buy-basket-icons">
+            {children[0]}
             <StripeCheckout
-          stripeKey="pk_test_OtPH56R0K9McMN5SdhabDEKC"
-          token={makePayment}
-          name={data.Name}
-          amount={data.Price * 100}
-          shippingAddress
-          billingAddress
-        >
-          {children[1]}
-        </StripeCheckout>
+              stripeKey="pk_test_OtPH56R0K9McMN5SdhabDEKC"
+              token={makePayment}
+              name={data.Name}
+              amount={data.Price * 100}
+              shippingAddress
+              billingAddress
+            >
+              {children[1]}
+            </StripeCheckout>
           </div>
         </div>
       </div>

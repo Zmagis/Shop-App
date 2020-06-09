@@ -79,11 +79,7 @@ const Admin = ({ products, onFetchProducts }) => {
       <h1>
         Add more items for sell{" "}
         <span>
-          <i
-            className="fas fa-plus"
-            style={{ cursor: "pointer", color: "grey", marginLeft: "10px" }}
-            onClick={handleAddForm}
-          ></i>
+          <i className="fas fa-plus add-icon" onClick={handleAddForm}></i>
         </span>
       </h1>
       {filteredArr.map((item, i) => (

@@ -17,3 +17,9 @@
 .edit-buttons button:hover {
   background-color: rgba(14, 114, 14, 0.335);
 }
+
+.add-icon {
+  cursor: pointer;
+  color: rgba(14, 114, 14, 0.335);
+  margin-left: 10px;
+}
