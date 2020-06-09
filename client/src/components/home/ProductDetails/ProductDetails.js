@@ -4,7 +4,6 @@ import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
 const ProductDetails = ({ data, children }) => {
-  console.log(data.Price);
   const makePayment = (token) => {
     const body = {
       token,

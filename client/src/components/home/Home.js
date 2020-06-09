@@ -48,9 +48,11 @@ const Home = ({
 
   const handleShow = (id) => {
     setShowProductDetails(true);
-    const clicked = products.filter((item) => item.idProducts === id);
-    setSelectedItem(clicked);
-    axios.post("/view", clicked);
+    const click = products.find((el) => el.idProducts === id);
+    if (click !== undefined) {
+      setSelectedItem(click);
+      axios.post("/view", click);
+    }
   };
 
   const filterHandler = (e) => {
@@ -76,11 +78,11 @@ const Home = ({
             className="fas fa-times leave-modal"
             onClick={() => setShowProductDetails(false)}
           ></i>
-          <ProductDetails data={selectedItem[0]}>
+          <ProductDetails data={selectedItem}>
             <i
               style={hidden}
               className="fas fa-shopping-basket icon"
-              onClick={() => handleAddToBasket(selectedItem[0].idProducts)}
+              onClick={() => handleAddToBasket(selectedItem.idProducts)}
             ></i>
             <i style={hidden} className="far fa-credit-card icon"></i>
           </ProductDetails>

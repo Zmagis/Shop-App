@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 //secrect stripe api key
 const stripe = require("stripe")("sk_test_hepYyhkn8dUdZasqrLWjlMfW00RgPIVInX");
-const { v4: uuidV4 } = require('uuid');
+const { v4: uuidV4 } = require("uuid");
 const mysql = require("mysql");
 const path = require("path");
 const bcrypt = require("bcrypt");
@@ -29,7 +29,6 @@ const upload = multer({
   },
   fileFilter: fileFilter,
 });
-
 
 const app = express();
 var bodyParser = require("body-parser");
@@ -228,23 +227,21 @@ app.post("/addproduct", upload.single("image"), (req, res, next) => {
 app.delete("/deleteproduct/:id", (req, res) => {
   console.log(req.params.id);
   let id = {
-    id: req.params.id
+    id: req.params.id,
   };
-  console.log(id);         
-  let sql =`DELETE FROM products WHERE idProducts = ${req.params.id}`;
-        let query = db.query(sql, (err, result) => {
-          if (err) throw err;
-          console.log(result);
-          res.status(200).json({ result: "product deleted" });
-        });
+  console.log(id);
+  let sql = `DELETE FROM products WHERE idProducts = ${req.params.id}`;
+  let query = db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.status(200).json({ result: "product deleted" });
+  });
 });
 
-
-
-//rout for update product 
+//rout for update product
 app.post("/editproduct", upload.single("image"), (req, res, next) => {
   //console.log("req.file: " + req.file);
-  if (req.body.image){
+  if (req.body.image) {
     var updateInput = {
       Name: req.body.title,
       Price: req.body.price,
@@ -253,86 +250,83 @@ app.post("/editproduct", upload.single("image"), (req, res, next) => {
       image: req.body.image,
       user: req.body.username,
       date: req.body.date,
-      idProducts: req.body.id
+      idProducts: req.body.id,
     };
   } else {
     var updateInput = {
-    Name: req.body.title,
-    Price: req.body.price,
-    Description: req.body.description,
-    Keywords: req.body.keywords,
-    image: req.file.path,
-    user: req.body.username,
-    date: req.body.date,
-    idProducts: req.body.id
-  };
-};
+      Name: req.body.title,
+      Price: req.body.price,
+      Description: req.body.description,
+      Keywords: req.body.keywords,
+      image: req.file.path,
+      user: req.body.username,
+      date: req.body.date,
+      idProducts: req.body.id,
+    };
+  }
   db.query(
     `SELECT idProducts FROM products WHERE idProducts = ${updateInput.idProducts}`,
     async function (error, results) {
       if (error) {
         res.status(400).json({ result: "error" });
       } else if (results.length == 0) {
-          res.status(204).json({ result: "Product not exits" });
-        } else {
-            console.log(updateInput);
-            let sql = `UPDATE products SET ? WHERE idProducts=${updateInput.idProducts}`;
-            let query = db.query(sql, updateInput, (err, result) => {
-              if (err) throw err;
-              console.log(result);
-              res.status(200).json({ result: "product updated" });
-            });
-          }
-        }
+        res.status(204).json({ result: "Product not exits" });
+      } else {
+        console.log(updateInput);
+        let sql = `UPDATE products SET ? WHERE idProducts=${updateInput.idProducts}`;
+        let query = db.query(sql, updateInput, (err, result) => {
+          if (err) throw err;
+          console.log(result);
+          res.status(200).json({ result: "product updated" });
+        });
+      }
+    }
   );
 });
 
-
 //count for views
-app.post("/view", (req, res)=>{
-  let data = req.body
-  let sql = `UPDATE products SET views=views+1 WHERE idProducts=${data[0].idProducts}`;
+app.post("/view", (req, res) => {
+  let data = req.body;
+  let sql = `UPDATE products SET views=views+1 WHERE idProducts=${data.idProducts}`;
   let query = db.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     //res.status(200).json({ result: "+++" });
   });
-})
-
-
+});
 
 //route for stripe payment
-app.post("/payment", (req, res) =>{
-  const {ids, token, total} = req.body;
+app.post("/payment", (req, res) => {
+  const { ids, token, total } = req.body;
   console.log("price", total);
   console.log("PRODUCT id's", ids);
   console.log("token", token.card);
-  const idempontencyKey = uuidV4
+  const idempontencyKey = uuidV4;
 
-  return stripe.customers.create({
-    email:token.email,
-    source: token.id
-  }).then(customer => {
-    stripe.charges.create({
-      amount: total * 100,
-      currency: 'eur',
-      customer: customer.id,
-      receipt_email: token.email,
-      description: `Purchased products ids:${ids}`,
-      shipping: {
-        name: token.card.name,
-        address: {
-          country: token.card.address_country,
-          line1: token.card.address_line1
-        }
-      }
+  return stripe.customers
+    .create({
+      email: token.email,
+      source: token.id,
     })
-  })
-  .then(result => res.status(200).json(result))
-  .catch(err => console.log(err) )
-
-})
-
+    .then((customer) => {
+      stripe.charges.create({
+        amount: total * 100,
+        currency: "eur",
+        customer: customer.id,
+        receipt_email: token.email,
+        description: `Purchased products ids:${ids}`,
+        shipping: {
+          name: token.card.name,
+          address: {
+            country: token.card.address_country,
+            line1: token.card.address_line1,
+          },
+        },
+      });
+    })
+    .then((result) => res.status(200).json(result))
+    .catch((err) => console.log(err));
+});
 
 //listen
 const port = 9000;
