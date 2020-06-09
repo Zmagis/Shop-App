@@ -3,7 +3,7 @@ import React from "react";
 const Product = ({ img, price, id, handleAddToBasket, handleShow, name }) => {
   const hidden =
     localStorage.getItem("username") === null ? null : { visibility: "hidden" };
-  let basketArr = JSON.parse(localStorage.getItem("basket"));
+  const basketArr = JSON.parse(localStorage.getItem("basket"));
 
   let greenBasket = null;
   if (basketArr.includes(id)) {

@@ -57,7 +57,8 @@ const EditPrduct = (props) => {
     setFile(e.target.files[0]);
   };
 
-  let today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10);
+  console.log(today);
 
   const submitHandler = (e) => {
     e.preventDefault();

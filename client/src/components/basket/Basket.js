@@ -36,7 +36,7 @@ const Basket = ({ products, onFetchProducts, onRemoveItemFromBasket }) => {
   };
 
   if (ids !== null) {
-    let arr = JSON.parse(localStorage.getItem("basket"));
+    const arr = JSON.parse(localStorage.getItem("basket"));
     filteredArr = products.filter((item) => arr.includes(item.idProducts));
 
     filteredArr.map((item) => {

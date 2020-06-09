@@ -26,7 +26,7 @@ const Admin = ({ products, onFetchProducts }) => {
 
   let filteredArr;
   if (products !== 0) {
-    let array = [...products];
+    const array = [...products];
     filteredArr = array.filter(
       (item) => item.user === localStorage.getItem("username")
     );
@@ -52,6 +52,7 @@ const Admin = ({ products, onFetchProducts }) => {
       data: { id: deleteId },
     });
     setShowConfirmDelete(false);
+    window.location.reload(true);
   };
 
   return (

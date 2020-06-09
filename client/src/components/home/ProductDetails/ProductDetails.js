@@ -36,7 +36,8 @@ const ProductDetails = ({ data, children }) => {
             <p>Views: {data.views}</p>
           </div>
           <div className="buy-basket-icons">
-            {children[0]}
+            {children}
+            {/* {children[0]}
             <StripeCheckout
               stripeKey="pk_test_OtPH56R0K9McMN5SdhabDEKC"
               token={makePayment}
@@ -46,7 +47,7 @@ const ProductDetails = ({ data, children }) => {
               billingAddress
             >
               {children[1]}
-            </StripeCheckout>
+            </StripeCheckout> */}
           </div>
         </div>
       </div>
