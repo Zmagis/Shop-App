@@ -2,7 +2,7 @@
 
 eshop website with content management system.
 
-This project was started with my college in bootcamp ([code](https://github.com/Zmagis/shop)). Since bootcamp is finished I am working on it alone.
+This project was started with my college in bootcamp ([where we ended](https://github.com/Zmagis/shop)). Since bootcamp is finished I am working on this project alone.
 
 ## Tools
 
@@ -10,7 +10,7 @@ This project was started with my college in bootcamp ([code](https://github.com/
 
 ## Functionalities
 
-### For everyone
+### For everyone/if not loged in as admin
 
 - Display all products for sale
 - Filter products according to entered keyword
