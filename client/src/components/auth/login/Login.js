@@ -1,29 +1,13 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-import Input from "../../UI/Input";
-import * as actions from "../../../store/actions";
-import "../Form.css";
+import Input from '../../UI/Input';
+import * as actions from '../../../store/actions';
+import { loginData } from '../formData';
+import '../Form.css';
 
 const Login = ({ loading, error, errorMsg, onAuth }) => {
-  const [formData, setFormData] = useState({
-    username: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "Username",
-      },
-      value: "",
-    },
-    password: {
-      elementType: "input",
-      elementConfig: {
-        type: "password",
-        placeholder: "Password",
-      },
-      value: "",
-    },
-  });
+  const [formData, setFormData] = useState(loginData);
 
   const changeHandler = (e, identifier) => {
     const updatedFormData = { ...formData };

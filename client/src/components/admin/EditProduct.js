@@ -1,51 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 import Input from '../UI/Input';
 import Backdrop from '../UI/backdrop/Backdrop';
 import * as actions from '../../store/actions';
+import { editFormData } from './formData';
 
 const EditPrduct = (props) => {
-  const [formData, setFormData] = useState({
-    title: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Title',
-      },
-      value: props.data.Name,
-      label: 'Edit title:',
-    },
-    price: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Price',
-      },
-      value: props.data.Price,
-      label: 'Edit price:',
-    },
-    description: {
-      elementType: 'textarea',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Description',
-      },
-      value: props.data.Description,
-      label: 'Edit description:',
-    },
-    keywords: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Keywords',
-      },
-      value: props.data.Keywords,
-      label: 'Edit Keywords',
-    },
-  });
-
+  console.log(props.data);
+  const [formData, setFormData] = useState(editFormData(props.data));
   const [file, setFile] = useState(props.data.image);
 
   const changeHandler = (e, identifier) => {
@@ -61,7 +24,6 @@ const EditPrduct = (props) => {
   };
 
   const today = new Date().toISOString().slice(0, 10);
-  console.log(today);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -124,7 +86,6 @@ const EditPrduct = (props) => {
           <button type="submit">Edit</button>
         </form>
         <br />
-        <i className="fab fa-500px"></i>
       </div>
     </Backdrop>
   );
