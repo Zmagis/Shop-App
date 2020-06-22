@@ -1,13 +1,16 @@
-import React from "react";
+import React from 'react';
 
 const Product = ({ img, price, id, handleAddToBasket, handleShow, name }) => {
   const hidden =
-    localStorage.getItem("username") === null ? null : { visibility: "hidden" };
-  const basketArr = JSON.parse(localStorage.getItem("basket"));
+    localStorage.getItem('username') === null ? null : { visibility: 'hidden' };
+  let basketArr = [];
+  if (localStorage.getItem('basket')) {
+    basketArr = JSON.parse(localStorage.getItem('basket'));
+  }
 
   let greenBasket = null;
   if (basketArr.includes(id)) {
-    greenBasket = { color: "green" };
+    greenBasket = { color: 'green' };
   }
   return (
     <div className="product">

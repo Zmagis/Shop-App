@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import * as actions from "../../store/actions";
-import "./Home.css";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
+import './Home.css';
 
-import axios from "axios";
+import axios from 'axios';
 
-import ProductDetails from "./ProductDetails/ProductDetails";
-import Product from "./Product";
-import Backdrop from "../UI/backdrop/Backdrop";
-import Spinner from "../UI/Spinner/Spinner";
-import Input from "../UI/Input";
+import ProductDetails from './ProductDetails/ProductDetails';
+import Product from './Product';
+import Backdrop from '../UI/backdrop/Backdrop';
+import Spinner from '../UI/Spinner/Spinner';
+import Input from '../UI/Input';
 
 const Home = ({
   products,
@@ -22,27 +22,27 @@ const Home = ({
   const [showProductDetails, setShowProductDetails] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
 
-  const [filter, setFilter] = useState("");
-
+  const [filter, setFilter] = useState('');
+  console.log(products);
   useEffect(() => {
     onFetchProducts();
   }, [onFetchProducts]);
 
-  if (localStorage.getItem("basket") === null) {
-    localStorage.setItem("basket", []);
+  if (localStorage.getItem('basket') === null) {
+    localStorage.setItem('basket', []);
   }
 
   const handleAddToBasket = (id) => {
-    if (localStorage.getItem("basket") === null) {
-      localStorage.setItem("basket", JSON.stringify([]));
+    if (localStorage.getItem('basket') === null) {
+      localStorage.setItem('basket', JSON.stringify([]));
     }
-    if (!localStorage.getItem("basket").includes(id)) {
-      if (localStorage.getItem("basket").length >= 1 && basket.length === 0) {
+    if (!localStorage.getItem('basket').includes(id)) {
+      if (localStorage.getItem('basket').length >= 1 && basket.length === 0) {
         onInitBasket();
       }
       onAddToBasket(id);
     } else {
-      console.log("already added");
+      console.log('already added');
     }
   };
 
@@ -51,7 +51,7 @@ const Home = ({
     const click = products.find((el) => el.idProducts === id);
     if (click !== undefined) {
       setSelectedItem(click);
-      axios.post("/view", click);
+      axios.post('/view', click);
     }
   };
 
@@ -59,7 +59,7 @@ const Home = ({
     setFilter(e.target.value.toUpperCase().trim());
   };
   let filtered = products;
-  if (filter !== "") {
+  if (filter !== '') {
     filtered = products.filter(
       (el) =>
         el.Keywords.toUpperCase() === filter ||
@@ -68,7 +68,7 @@ const Home = ({
   }
 
   const hidden =
-    localStorage.getItem("username") === null ? null : { visibility: "hidden" };
+    localStorage.getItem('username') === null ? null : { visibility: 'hidden' };
 
   return (
     <div>
@@ -93,7 +93,7 @@ const Home = ({
         <Input
           key="search"
           value={filter}
-          elementConfig={{ type: "text", placeholder: "SEARCH" }}
+          elementConfig={{ type: 'text', placeholder: 'SEARCH' }}
           changeHandler={(e) => filterHandler(e)}
         />
         <i className="fas fa-search"></i>

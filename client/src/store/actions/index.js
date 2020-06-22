@@ -1,7 +1,7 @@
-export { initFetchProducts } from "./home";
+export { initFetchProducts } from './home';
 
-export { auth, register, logout } from "./auth";
+export { auth, register, logout } from './auth';
 
-export { initBasket, addItemToBasket, removeItemFromBasket } from "./basket";
+export { initBasket, addItemToBasket, removeItemFromBasket } from './basket';
 
-export { initSentNewProduct } from "./admin";
+export { initSentNewProduct, initEditProduct } from './admin';

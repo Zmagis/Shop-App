@@ -1,45 +1,48 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Input from "../UI/Input";
-import Backdrop from "../UI/backdrop/Backdrop";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
+import Input from '../UI/Input';
+import Backdrop from '../UI/backdrop/Backdrop';
+import * as actions from '../../store/actions';
 
 const EditPrduct = (props) => {
   const [formData, setFormData] = useState({
     title: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "Title",
+        type: 'text',
+        placeholder: 'Title',
       },
       value: props.data.Name,
-      label: "Edit title:",
+      label: 'Edit title:',
     },
     price: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "Price",
+        type: 'text',
+        placeholder: 'Price',
       },
       value: props.data.Price,
-      label: "Edit price:",
+      label: 'Edit price:',
     },
     description: {
-      elementType: "textarea",
+      elementType: 'textarea',
       elementConfig: {
-        type: "text",
-        placeholder: "Description",
+        type: 'text',
+        placeholder: 'Description',
       },
       value: props.data.Description,
-      label: "Edit description:",
+      label: 'Edit description:',
     },
     keywords: {
-      elementType: "input",
+      elementType: 'input',
       elementConfig: {
-        type: "text",
-        placeholder: "Keywords",
+        type: 'text',
+        placeholder: 'Keywords',
       },
       value: props.data.Keywords,
-      label: "Edit Keywords",
+      label: 'Edit Keywords',
     },
   });
 
@@ -63,26 +66,16 @@ const EditPrduct = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append("image", file);
-    data.append("price", formData.price.value);
-    data.append("keywords", formData.keywords.value);
-    data.append("title", formData.title.value);
-    data.append("description", formData.description.value);
-    data.append("id", props.data.idProducts);
-    data.append("username", localStorage.username);
-    data.append("date", today);
-    axios
-      .post("/editproduct", data)
-      .then((result) => {
-        if (result.status === 200) {
-          alert("product is updated");
-        } else if (result.status === 204) {
-          alert("product not exits");
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    data.append('image', file);
+    data.append('price', formData.price.value);
+    data.append('keywords', formData.keywords.value);
+    data.append('title', formData.title.value);
+    data.append('description', formData.description.value);
+    data.append('id', props.data.idProducts);
+    data.append('username', localStorage.username);
+    data.append('date', today);
+    props.onEditProduct(data);
+
     props.setShowEdit(false);
   };
 
@@ -109,7 +102,7 @@ const EditPrduct = (props) => {
               value={element.config.value}
               label={element.config.label}
               changeHandler={
-                element.config.elementConfig.type === "file"
+                element.config.elementConfig.type === 'file'
                   ? (e) => uploadImageHandler(e, element.id)
                   : (e) => changeHandler(e, element.id)
               }
@@ -118,7 +111,7 @@ const EditPrduct = (props) => {
 
           <div className="upload-btn-wrapper">
             <label>Change photo:</label>
-            <button className={file !== null ? "uploaded btn" : "btn"}>
+            <button className={file !== null ? 'uploaded btn' : 'btn'}>
               Upload an image
             </button>
             <input
@@ -137,4 +130,8 @@ const EditPrduct = (props) => {
   );
 };
 
-export default EditPrduct;
+const mapDispatchToProps = (dispatch) => ({
+  onEditProduct: (data) => dispatch(actions.initEditProduct(data)),
+});
+
+export default connect(null, mapDispatchToProps)(EditPrduct);
