@@ -2,7 +2,7 @@
 
 eshop website with content management system.
 
-This project was started with my college in bootcamp ([where we ended](https://github.com/Zmagis/shop)). Since bootcamp is finished I am working on this project alone.
+This project was started with my college in bootcamp . Since bootcamp is finished I am working on this project alone ([at the end of bootcamp](https://github.com/Zmagis/shop)).
 
 ## Tools
 
